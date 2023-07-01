@@ -5,7 +5,12 @@ find . -maxdepth 2 -type f -executable -regex '.*/[0-9].*[0-9]/[0-9][^.]*[.][^./
 find . -maxdepth 2 -type f -executable -regex '.*.out$' -exec rm -i "{}" +
 
 # Ask for leetcode problem number
-read -p "Enter leetcode problem number: " problem_number
+if [ -n "$1" ]; then
+  problem_number="$1"
+else
+  echo "Enter leetcode problem number: "
+  read problem_number
+fi
 
 # Show git status and ask for confirmation
 git status
@@ -17,7 +22,7 @@ if [[ "$confirmation" =~ ^[Nn]$ ]]; then
 fi
 
 # Commit changes
-git add .
+git add $(date +%Y-%m)/$problem_number*
 git commit -m "problem $problem_number"
 
 # Push to origin main
