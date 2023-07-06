@@ -9,7 +9,7 @@ else
 fi
 
 # Find the file that starts with the integer ID
-file_name=$(find . -name "${file_id}*.cpp")
+file_name=$(find . -name "${file_id}.*.cpp")
 
 # Add "//" + date -I  \n\n to the start of the file
 timestamp=$(date -I)

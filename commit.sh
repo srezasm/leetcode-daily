@@ -12,6 +12,9 @@ else
   read problem_number
 fi
 
+# Stage changes
+git add $(date +%Y-%m)/$problem_number.*.cpp
+
 # Show git status and ask for confirmation
 git status
 read -p "Do you want to continue? [Y/n] " confirmation
@@ -21,8 +24,7 @@ if [[ "$confirmation" =~ ^[Nn]$ ]]; then
     exit 1
 fi
 
-# Commit changes
-git add $(date +%Y-%m)/$problem_number*
+# Commit
 git commit -m "problem $problem_number"
 
 # Push to origin main
